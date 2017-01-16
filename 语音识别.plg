@@ -1,0 +1,39 @@
+<html>
+<body>
+<pre>
+<h1>礦ision Build Log</h1>
+<h2>Project:</h2>
+F:\语音识别\STM32语音识别\CODE\语音识别.uvproj
+Project File Date:  01/08/2012
+
+<h2>Output:</h2>
+Build target 'Voice_Rec'
+creating preprocessor file for main.c...
+Src\APP\includes.h(31): error:  #5: cannot open source input file "nRF24L01.h": No such file or directory
+compiling main.c...
+.\Src\BSP\bsp.h(10): error:  #20: identifier "CPU_INT32U" is undefined
+.\Src\BSP\bsp.h(11): error:  #20: identifier "CPU_INT32U" is undefined
+Src\APP\includes.h(31): error:  #5: cannot open source input file "nRF24L01.h": No such file or directory
+creating preprocessor file for BSP.c...
+.\Src\APP\includes.h(31): error:  #5: cannot open source input file "nRF24L01.h": No such file or directory
+compiling BSP.c...
+.\Src\BSP\bsp.h(10): error:  #20: identifier "CPU_INT32U" is undefined
+.\Src\BSP\bsp.h(11): error:  #20: identifier "CPU_INT32U" is undefined
+.\Src\APP\includes.h(31): error:  #5: cannot open source input file "nRF24L01.h": No such file or directory
+Project build/rebuild aborted.
+Target not created
+Build target 'Voice_Rec'
+creating preprocessor file for main.c...
+Src\APP\includes.h(34): error:  #5: cannot open source input file "LCD.h": No such file or directory
+compiling main.c...
+.\Src\BSP\bsp.h(10): error:  #20: identifier "CPU_INT32U" is undefined
+.\Src\BSP\bsp.h(11): error:  #20: identifier "CPU_INT32U" is undefined
+Src\APP\includes.h(34): error:  #5: cannot open source input file "LCD.h": No such file or directory
+creating preprocessor file for BSP.c...
+.\Src\APP\includes.h(34): error:  #5: cannot open source input file "LCD.h": No such file or directory
+compiling BSP.c...
+.\Src\BSP\bsp.h(10): error:  #20: identifier "CPU_INT32U" is undefined
+.\Src\BSP\bsp.h(11): error:  #20: identifier "CPU_INT32U" is undefined
+.\Src\APP\includes.h(34): error:  #5: cannot open source input file "LCD.h": No such file or directory
+Project build/rebuild aborted.
+Target not created

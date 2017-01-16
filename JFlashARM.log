@@ -1,0 +1,8 @@
+
+* 2016-12-20, 00:39:51
+Target VCC failure. Please check target voltage.
+Wrong AHB ID (15:3). Expected 0x04770001 (Mask 0x0FFFFF0F), Found 0x00000000
+Failed to unsecure chip
+Failed to connect
+Could not erase sectors, not connected
+Failed to auto program target

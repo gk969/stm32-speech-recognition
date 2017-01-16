@@ -1,0 +1,61 @@
+*** Creating Trace Output File '.\Object\语音识别.tra' Ok.
+### Preparing for ADS-LD.
+### Creating ADS-LD Command Line
+### List of Objects: adding '".\object\main.o"'
+### List of Objects: adding '".\object\vad.o"'
+### List of Objects: adding '".\object\mfcc.o"'
+### List of Objects: adding '".\object\dtw.o"'
+### List of Objects: adding '".\object\gui.o"'
+### List of Objects: adding '".\object\bsp.o"'
+### List of Objects: adding '".\object\adc.o"'
+### List of Objects: adding '".\object\delay.o"'
+### List of Objects: adding '".\object\flash.o"'
+### List of Objects: adding '".\object\spi.o"'
+### List of Objects: adding '".\object\tftlcd.o"'
+### List of Objects: adding '".\object\touch_panel.o"'
+### List of Objects: adding '".\object\usart.o"'
+### List of Objects: adding '".\object\cr4_fft_1024_stm32.o"'
+### List of Objects: adding '".\object\spiflash.o"'
+### List of Objects: adding '".\object\core_cm3.o"'
+### List of Objects: adding '".\object\stm32f10x_it.o"'
+### List of Objects: adding '".\object\system_stm32f10x.o"'
+### List of Objects: adding '".\object\startup_stm32f10x_hd.o"'
+### List of Objects: adding '".\object\misc.o"'
+### List of Objects: adding '".\object\stm32f10x_adc.o"'
+### List of Objects: adding '".\object\stm32f10x_bkp.o"'
+### List of Objects: adding '".\object\stm32f10x_can.o"'
+### List of Objects: adding '".\object\stm32f10x_cec.o"'
+### List of Objects: adding '".\object\stm32f10x_crc.o"'
+### List of Objects: adding '".\object\stm32f10x_dac.o"'
+### List of Objects: adding '".\object\stm32f10x_dbgmcu.o"'
+### List of Objects: adding '".\object\stm32f10x_dma.o"'
+### List of Objects: adding '".\object\stm32f10x_exti.o"'
+### List of Objects: adding '".\object\stm32f10x_flash.o"'
+### List of Objects: adding '".\object\stm32f10x_fsmc.o"'
+### List of Objects: adding '".\object\stm32f10x_gpio.o"'
+### List of Objects: adding '".\object\stm32f10x_i2c.o"'
+### List of Objects: adding '".\object\stm32f10x_iwdg.o"'
+### List of Objects: adding '".\object\stm32f10x_pwr.o"'
+### List of Objects: adding '".\object\stm32f10x_rcc.o"'
+### List of Objects: adding '".\object\stm32f10x_rtc.o"'
+### List of Objects: adding '".\object\stm32f10x_sdio.o"'
+### List of Objects: adding '".\object\stm32f10x_spi.o"'
+### List of Objects: adding '".\object\stm32f10x_tim.o"'
+### List of Objects: adding '".\object\stm32f10x_usart.o"'
+### List of Objects: adding '".\object\stm32f10x_wwdg.o"'
+### ADS-LD Command completed:
+--cpu Cortex-M3 ".\object\main.o" ".\object\vad.o" ".\object\mfcc.o" ".\object\dtw.o" ".\object\gui.o" ".\object\bsp.o" ".\object\adc.o" ".\object\delay.o" ".\object\flash.o" ".\object\spi.o" ".\object\tftlcd.o" ".\object\touch_panel.o" ".\object\usart.o" ".\object\cr4_fft_1024_stm32.o" ".\object\spiflash.o" ".\object\core_cm3.o" ".\object\stm32f10x_it.o" ".\object\system_stm32f10x.o" ".\object\startup_stm32f10x_hd.o" ".\object\misc.o" ".\object\stm32f10x_adc.o" ".\object\stm32f10x_bkp.o" ".\object\stm32f10x_can.o" ".\object\stm32f10x_cec.o" ".\object\stm32f10x_crc.o" ".\object\stm32f10x_dac.o" ".\object\stm32f10x_dbgmcu.o" ".\object\stm32f10x_dma.o" ".\object\stm32f10x_exti.o" ".\object\stm32f10x_flash.o" ".\object\stm32f10x_fsmc.o" ".\object\stm32f10x_gpio.o" ".\object\stm32f10x_i2c.o" ".\object\stm32f10x_iwdg.o" ".\object\stm32f10x_pwr.o" ".\object\stm32f10x_rcc.o" ".\object\stm32f10x_rtc.o" ".\object\stm32f10x_sdio.o" ".\object\stm32f10x_spi.o" ".\object\stm32f10x_tim.o" ".\object\stm32f10x_usart.o" ".\object\stm32f10x_wwdg.o" --library_type=microlib --feedback ".\Object\语音识别.fed" 
+--strict --scatter ".\Object\语音识别.sct" 
+--summary_stderr --info summarysizes --map --xref --callgraph --symbols 
+--info sizes --info totals --info unused --info veneers 
+ --list ".\List\语音识别.map" -o ".\Object\语音识别.axf"### Preparing Environment (PrepEnvAds)
+### ADS-LD Output File: '.\Object\语音识别.axf'
+### ADS-LD Command File: '.\Object\语音识别.lnp'
+### Checking for dirty Components...
+### Creating CmdFile '.\Object\语音识别.lnp', Handle=0x000004F0
+### Writing '.lnp' file
+### ADS-LD Command file '.\Object\语音识别.lnp' is ready.
+### ADS-LD: About to start ADS-LD Thread.
+### ADS-LD: executed with 0 errors
+### Updating obj list
+### LDADS_file() completed.
