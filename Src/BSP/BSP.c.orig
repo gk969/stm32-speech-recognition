@@ -1,0 +1,160 @@
+#include "includes.h"
+
+#define DEBUG
+#ifdef DEBUG
+#define DBP(fmt,arg...)  USART1_printf(fmt,##arg)
+#define DBPLN(fmt,arg...)  USART1_printf_line(fmt,##arg)
+#define DBPH(src, len)  USART1_print_hex(src, len)
+#else
+#define DBP(fmt,arg...)
+#define DBPLN(fmt,arg...)
+#define DBPH(src, len)
+#endif
+
+void RCC_Configuration(void) {
+    /* Setup the microcontroller system. Initialize the Embedded Flash Interface,
+     initialize the PLL and update the SystemFrequency variable. */
+    SystemInit();
+
+
+    /* Enable USART1, GPIOA, GPIOx and AFIO бнбн clocks */
+    RCC_APB2PeriphClockCmd(RCC_APB2Periph_USART1| RCC_APB2Periph_SPI1 |
+                           RCC_APB2Periph_GPIOB | RCC_APB2Periph_GPIOA|
+                           RCC_APB2Periph_GPIOC | RCC_APB2Periph_GPIOD|
+                           RCC_APB2Periph_GPIOE | RCC_APB2Periph_GPIOG|
+                           RCC_APB2Periph_AFIO  | RCC_APB2Periph_ADC1, ENABLE);
+
+    RCC_AHBPeriphClockCmd(RCC_AHBPeriph_DMA1, ENABLE);
+}
+
+/**
+  * @brief  Configures the different GPIO ports.
+  * @param  None
+  * @retval : None
+  */
+void GPIO_Configuration(void) {
+    GPIO_InitTypeDef GPIO_InitStructure;
+
+    /*  For LED1 LED2   Use */
+    GPIO_InitStructure.GPIO_Pin = GPIO_Pin_6 | GPIO_Pin_7;
+    GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;
+    GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
+    GPIO_Init(GPIOC, &GPIO_InitStructure);
+
+    /* For LED3, LED4    use */
+    GPIO_InitStructure.GPIO_Pin = GPIO_Pin_13 | GPIO_Pin_6;
+    GPIO_Init(GPIOD, &GPIO_InitStructure);
+
+
+    /* For key use*/
+    GPIO_InitStructure.GPIO_Pin =  GPIO_Pin_2 | GPIO_Pin_3 | GPIO_Pin_4 | GPIO_Pin_5;
+    GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IPU;
+    GPIO_Init(GPIOE, &GPIO_InitStructure);
+}
+
+/**
+  * @brief  Configures the nested vectored interrupt controller.
+  * @param  None
+  * @retval : None
+  */
+void NVIC_Configuration(void) {
+    NVIC_InitTypeDef NVIC_InitStructure;
+
+    /* Configure the NVIC Preemption Priority Bits */
+    NVIC_PriorityGroupConfig(NVIC_PriorityGroup_0);
+
+    /* Enable the EXTI0 Interrupt */
+    NVIC_InitStructure.NVIC_IRQChannel = EXTI2_IRQn;
+    NVIC_InitStructure.NVIC_IRQChannelSubPriority = 1;
+    NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
+    NVIC_Init(&NVIC_InitStructure);
+    /*                             */
+    NVIC_PriorityGroupConfig(NVIC_PriorityGroup_1);
+
+    NVIC_InitStructure.NVIC_IRQChannel = SDIO_IRQn;
+    NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 0;
+    NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0;
+    NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
+    NVIC_Init(&NVIC_InitStructure);
+
+}
+
+void EXTI_Configuration(void) {
+
+    EXTI_InitTypeDef EXTI_InitStructure;
+    EXTI_InitStructure.EXTI_Line = EXTI_Line2;
+    EXTI_InitStructure.EXTI_Mode = EXTI_Mode_Interrupt;
+    EXTI_InitStructure.EXTI_Trigger = EXTI_Trigger_Falling;
+    EXTI_InitStructure.EXTI_LineCmd = ENABLE;
+    EXTI_Init(&EXTI_InitStructure);
+
+    /* Selects the GPIO pin used as EXTI Line*/
+    GPIO_EXTILineConfig(GPIO_PortSourceGPIOE, GPIO_PinSource2);
+}
+
+
+void tim2_init(void) {
+    TIM_TimeBaseInitTypeDef  TIM_TimeBaseStructure;
+
+    RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM2 , ENABLE);
+
+    /* Time base configuration */
+    TIM_TimeBaseStructure.TIM_Period = 0xFFFF;
+    TIM_TimeBaseStructure.TIM_Prescaler = 36000;//
+    TIM_TimeBaseStructure.TIM_ClockDivision = 0;
+    TIM_TimeBaseStructure.TIM_CounterMode = TIM_CounterMode_Up;
+
+    TIM_TimeBaseInit(TIM2, &TIM_TimeBaseStructure);
+}
+
+void tim2_start(void) {
+    TIM2->CNT = 0;
+    TIM_Cmd(TIM2, ENABLE);
+}
+
+u16 tim2_stop(void) {
+    TIM_Cmd(TIM2, DISABLE);
+    return (TIM2->CNT) / 2;
+}
+
+void BSP_Init(void) {
+
+    RCC_Configuration();
+
+    //NVIC_Configuration();
+
+    GPIO_Configuration();
+
+    USART1_configuration();
+    
+    DBPLN("start");
+    
+    
+	SPI_TSC_Flash_Init();
+    
+    FSMC_LCD_Init();
+
+    LCD_Init();
+
+    EXTI_Configuration();
+
+    ADC_DMA_Init();
+
+    tim2_init();
+}
+
+uint32_t  BSP_CPU_ClkFreq(void) {
+    RCC_ClocksTypeDef  rcc_clocks;
+
+    RCC_GetClocksFreq(&rcc_clocks);
+
+    return ((uint32_t)rcc_clocks.HCLK_Frequency);
+}
+
+uint32_t  OS_CPU_SysTickClkFreq(void) {
+    uint32_t  freq;
+
+
+    freq = BSP_CPU_ClkFreq();
+    return (freq);
+}
